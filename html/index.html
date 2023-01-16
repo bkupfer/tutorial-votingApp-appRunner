@@ -1,68 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Voting Application Demo</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <meta name="description" content="bernardo küpfer besa">
+    <meta name="author" content="bkupfer">
+
+    <title>bküpfer</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <link href="static/css/clean-blog.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <link rel="shortcut icon" type="image/png" href="static/favicon.ico">
 </head>
 
 <body>
-    <div id='v_app'>
-        <section class="hero is-small is-warning is-bold">
-            <div class="hero-body">
-                <div class="container">
-                    <h1 class="title is-2">
-                        Hungry Eat What
-                    </h1>
-                    <h2 class='subtitle is-5'>
-                        Voting Application Demo                        
-                    </h2>
-                    <div>
-                        <a target='_blank' href='https://github.com/donnieprakoso/tutorial-awsAppRunner'>Github</a>
+<div id="page-container">
+    <div id="content-wrap">
+        <header id="image-header" class="intro-header" style="background-image: url('static/img/bicolor-sky-zuerich.jpg')">
+            <div class="container">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>bküpfer</h1>
+                        <hr class="small">
+                        <span class="subheading">Bernardo J. Küpfer Besa ー Talento</span>
                     </div>
                 </div>
             </div>
-        </section>
-        <section style='margin-top:40px;'>
-            <div class='columns'>
-                <div class='column is-offset-2'>
-                    <div class='columns'>
-                        <div class='column is-5' v-for="opt in options" style='text-align:center;'>
-                            <div class="card" style='height:100%'>
-                                <div class="card-image">
-                                    <img v-bind:src="opt.image" alt="Placeholder image" width="640px">
-                                    <p v-html="opt.image_copyright"></p>
-                                </div>
-                                <div class="card-content">
-                                    <div class="content">
-                                        <div class='title is-4'>
-                                            [[ opt.name ]]
-                                        </div>
-                                        <div v-if="showResult" class='title has-background-link-dark has-text-white-ter' style='width: 50%;text-align: center;
-border-radius: 5px;
-margin: auto;
-    margin-bottom: auto;
-margin-bottom: 30px;padding: 5px 0px 5px 0px;'>
-                                            [[ opt.votes ]] VOTES
-                                        </div>
-                                        <div class=''>
-                                            <button v-on:click="vote(opt.ID)" class='button is-warning'><b>VOTE</b></button>
-                                        </div>
-                                    </div>
-                                </div>
+        </header>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xl-12" style="text-align: justify">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a onclick="swapBackgroundImage('en')" class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Hello</a>
+                            <a onclick="swapBackgroundImage('de')" class="nav-item nav-link" id="nav-de-tab" data-toggle="tab" href="#nav-de" role="tab" aria-controls="nav-de" aria-selected="false">Hallo</a>
+                            <a onclick="swapBackgroundImage('es')" class="nav-item nav-link" id="nav-es-tab" data-toggle="tab" href="#nav-es" role="tab" aria-controls="nav-es" aria-selected="false">Hola</a>
+                            <a onclick="swapBackgroundImage('jp')" class="nav-item nav-link" id="nav-jp-tab" data-toggle="tab" href="#nav-jp" role="tab" aria-controls="nav-jp" aria-selected="false">今日は</a>
+                            <a onclick="swapBackgroundImage('contact')" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact & CV</a>
+                            <!-- <a class="nav-item nav-link" id="nav-dog-tab" href="/dog" role="tab" aria-controls="nav-contact" aria-selected="false">Dog breed classifier</a> -->
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <p>Hello world,</p>
+                            <p>My name is Bernardo Küpfer, I am a Swiss-Chilean  🇨🇭🇨🇱   wizard (Software engineer) on a quest for adventure around the world.<br>
+                                Currently, I am living in Zürich, Switzerland, but open to keep on moving.
+                            </p>
+                            <p>I am seeking new professional opportunities and my main areas of interest and expertise are in Full-stack web development and Machine learning. <br>
+                                If you have a project that aims to make the world a better place and are looking for a talented software engineer, please don't hesitate to contact me.<br>
+                                I would be happy to hear from you.
+                            </p>
+                            <p>Cheers,<br>
+                                Bernardo
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-de" role="tabpanel" aria-labelledby="nav-de-tab">
+                            <p>Grüezi mitenand,</p>
+                            <p>Mein Name ist Bernardo Küpfer, ich bin ein Schweizer-Chilene 🇨🇭🇨🇱 und arbeite als Software-Entwickler.<br>
+                                Ich bin auf der Suche nach Abenteuern rund um die Welt und derzeit lebe ich in Zürich, Schweiz, bin aber offen für weitere Ortswechsel.
+                            </p>
+                            <p>Ich bin auf der Suche nach neuen beruflichen Möglichkeiten und meine Schwerpunkte liegen in der Full-stack Webentwicklung und Machine Learning.<br>
+                                Wenn Sie ein Projekt haben, das darauf abzielt, die Welt zu verbessern und ein talentierter Software-Entwickler suchen, zögern Sie bitte nicht, mich zu kontaktieren. <br>
+                                Ich würde mich freuen, mehr darüber zu erfahren.
+                            </p>
+                            <p>
+                                Freundliche Grüsse,<br>
+                                Bernardo
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-es" role="tabpanel" aria-labelledby="nav-es-tab">
+                            <p>Hola mundo,</p>
+                            <p>Mi nombre es Bernardo Küpfer, soy Chileno-Suizo 🇨🇱🇨🇭 , ingeniero en computación, en busca de aventuras por todo el mundo.<br>
+                                Actualmente estoy viviendo en Zúrich, Suiza, pero estoy abierto a seguir viajando.</p>
+                            <p>Me encuentro abierto a nuevas oportunidades profesionales, mis áreas de interés y experiencia son el desarrollo web y machine learning.<br>
+                                Si tienes un proyecto que busca mejorar el mundo y necesitas a un ingeniero de software talentoso, no dudes en contactarme. <br>
+                                Me encantaría saber más.
+                            </p>
+                            <p>
+                                Saludos cordiales,<br>
+                                Bernardo
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-jp" role="tabpanel" aria-labelledby="nav-jp-tab">
+                            <p>こんにちは皆さん、</p>
+                            <p>私の名前はバーナルド・キュプファー です。私はスイス・チリ人 🇨🇭🇨🇱 のソフトウェアエンジニアで、世界中の冒険を求めています。<br>
+                                現在、スイスのチューリッヒに住んでいますが、日本に移住したいし、移住することに全く抵抗はありません。</p>
+                            <p>
+                                新しいプロフェッショナルな機会を求めており、私の興味や専門はフルスタックのWeb開発と機械学習です。
+                                もし世界をより良くすることを目的としたプロジェクトに興味があって、才能のあるソフトウェアエンジニアを探しているなら、お気軽にお問い。
+                            </p>
+                            <p>
+                                ありがとうごさいます、<br>
+                                ベルナルド
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <a href="{{ cv_link }}" target="_blank" class="btn btn-primary pull-right">Downloadable_CV.pdf</a>
+                            <div class="col-md-8 mt-4 monospaced">
+                                &lt;<span class="monoheader">contact-information</span>&gt;<br>
+                                <span class="ml-4">&lt;<span class="monoheader">email</span>&gt;bdokupferb@gmail.com&lt;/<span class="monoheader">email</span>&gt;</span><br>
+                                <span class="ml-4">&lt;<span class="monoheader">phone</span>&gt;(+41)&nbsp;76&nbsp;584&nbsp;83&nbsp;02&lt;/<span class="monoheader">phone</span>&gt;</span><br>
+                                <span class="ml-4">&lt;<span class="monoheader">github</span>&gt;<a href="https://github.com/bkupfer/" target="_blank">/bkupfer</a>&lt;/<span class="monoheader">github</span>&gt;</span><br>
+                                <span class="ml-4">&lt;<span class="monoheader">linkedin</span>&gt;<a href="https://www.linkedin.com/in/bkupfer/?locale=en_US" target="_blank">/in/bkupfer</a>&lt;/<span class="monoheader">linkedin</span>&gt;</span><br>
+                                <span class="ml-4">&lt;<span class="monoheader">steam</span>&gt;114662724&lt;/<span class="monoheader">steam</span>&gt;</span><br>
+                                <span class="ml-4">&lt;<span class="monoheader">b-day</span>&gt;13.09.91 (age {{ my_age }})&lt;/<span class="monoheader">b-day</span>&gt;</span><br>
+                                &lt;/<span class="monoheader">contact-information</span>&gt;<br>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
+
+    <footer id="footer" class="site-footer">
+        <div id="footer-content">
+            <p>Copyright {{ copyright_year }} @ bküpfer </p>
+        </div>
+    </footer>
+</div>
 </body>
+
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type='text/javascript'>
+    function swapBackgroundImage(where) {
+    const image_locations = {
+        en: "bicolor-sky-zuerich.jpg",
+        es: "bdo-leonera.jpg",
+        de: "alps-skiing.jpg",
+        jp: "otaru.jpg",
+        contact: "yuki-no-doubutsu-sapporo.jpg"
+    }
+    const img_path = 'static/img/' + image_locations[where];
+    $("#image-header").attr("style", "background-image: url(" + img_path + "); ");
+}
+
     var app = new Vue({
         el: "#v_app",
         delimiters: ['[[', ']]'],
@@ -108,5 +195,36 @@ margin-bottom: 30px;padding: 5px 0px 5px 0px;'>
         }
     });
 </script>
+
+<style>
+    .monospaced {
+        font-family: monospace
+    }
+    .monoheader {
+        color: #F92371;
+    }
+    .section {
+        color: #4194d8;
+    }
+    .subsection {
+        color: #f0a64d;
+    }
+    .site-footer {
+        background: #215aa4;
+        color: #FFFFFF;
+        text-align: center;
+        padding: 0.2rem;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    }
+    #page-container {
+        position: relative;
+        min-height: 100vh;
+    }
+    #content-wrap {
+        padding-bottom: 8rem;    /* Footer height */
+    }
+</style>
 
 </html>
